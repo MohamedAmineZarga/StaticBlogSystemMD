@@ -18,16 +18,11 @@ export class BlogPostComponent implements OnInit {
   readingTime: number = 0;
   isLoading: boolean = false;
   error: string | null = null;
-
-
   views: number = 0;
-
-
   comments: Comment[] = [];
   newCommentAuthor = '';
   newCommentContent = '';
-
-
+public notFoundTemplate = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,75 +30,71 @@ export class BlogPostComponent implements OnInit {
     private commentService: CommentServiceService
 
   ) {}
+  // Load post comments
+loadComments() {
+  if (!this.post || !this.post.slug) {
+    this.comments = [];
+    return;
+  }
+  this.comments = this.commentService.getCommentsForPost(this.post.slug);
+}
 
-  async ngOnInit(): Promise<void> {
-    this.isLoading = true;
-    try {
-      const slug = this.route.snapshot.paramMap.get('slug');
-
-      if (!slug) {
-        this.error = 'No post slug provided';
-        this.isLoading = false;
-        return;
-      }
-
-      const posts = await this.postService.getAllPosts();
-
-
-     if (this.post) {
-        this.postService.incrementPostViews(slug);
-        this.views = this.postService.getPostViews(slug);
-        this.comments = this.commentService.getCommentsForPost(slug);
-
-      }
-
-      
-      this.post = posts.find(p => p.slug === slug) || null;
-
-      if (this.post && this.post.content) {
+async ngOnInit(): Promise<void> {
+  this.isLoading = true;
+  try {
+    const slug = this.route.snapshot.paramMap.get('slug');
+    if (!slug) {
+      this.error = 'No post slug provided';
+      this.isLoading = false;
+      return;
+    }
+    const posts = await this.postService.getAllPosts();
+    this.post = posts.find(p => p.slug === slug) || null;
+    if (this.post) {
+      this.postService.incrementPostViews(this.post.slug); 
+      this.views = this.postService.getPostViews(this.post.slug);  
+      this.comments = this.commentService.getCommentsForPost(this.post.slug);
+      if (this.post.content) {
         const cleanContent = this.post.content
-          .replace(/[\s\S]*?/g, '') 
           .replace(/!\[.*?\]\(.*?\)/g, '') 
           .replace(/\[.*?\]\(.*?\)/g, '')
           .replace(/[#*>\-]/g, '');
 
         const words = cleanContent.trim().split(/\s+/).filter(word => word.length > 0).length;
-        this.readingTime = words > 0 ? Math.ceil(words / 200) : 1; // Minimum 1 minute
+        this.readingTime = words > 0 ? Math.ceil(words / 200) : 1; 
       } else {
-        this.error = this.post ? 'Post content is empty' : 'Post not found';
+        this.error = 'Post content is empty';
       }
-    } catch (error) {
-      this.error = 'Failed to load post';
-      console.error('Error loading post:', error);
-    } finally {
-      this.isLoading = false;
+    } else {
+      this.error = 'Post not found';
     }
-
-
-
-
+  } catch (error) {
+    this.error = 'Failed to load post';
+    console.error('Error loading post:', error);
+  } finally {
+    this.isLoading = false;
   }
+}
 
-
+// Add New comment 
     addComment() {
-    if (!this.newCommentAuthor.trim() || !this.newCommentContent.trim()) return;
-
-    const comment: Comment = {
-      postSlug: this.post!.slug,
-      author: this.newCommentAuthor.trim(),
-      content: this.newCommentContent.trim(),
-      date: new Date().toISOString()
-    };
-    this.commentService.addComment(comment);
-    this.comments.push(comment);
-    this.newCommentAuthor = '';
-    this.newCommentContent = '';
+  if (!this.newCommentAuthor.trim() || !this.newCommentContent.trim()) {
+    return;
   }
+  if (!this.post) {
+  return;
+}
+const comment: Comment = {
+  postSlug: this.post.slug,
+  author: this.newCommentAuthor.trim(),
+  content: this.newCommentContent.trim(),
+  date: new Date().toISOString()
+};
+  this.commentService.addComment(comment);
 
+  this.newCommentAuthor = '';
+  this.newCommentContent = '';
 
-
-
-  
-
-
+  this.loadComments(); 
+}
 }

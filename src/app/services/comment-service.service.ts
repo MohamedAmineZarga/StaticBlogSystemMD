@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-
-
 export interface Comment {
   postSlug: string;
   author: string;
@@ -8,33 +6,22 @@ export interface Comment {
   date: string;
 }
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class CommentServiceService {
-
     private storageKey = 'blogComments';
-
-
-
   constructor() { }
-
-
+  // Get Post Comments
     getCommentsForPost(postSlug: string): Comment[] {
-    const all = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
-    return all.filter((c: Comment) => c.postSlug === postSlug);
+    const allComments: Comment[] = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+    return allComments.filter(comment => comment.postSlug === postSlug);
   }
 
-  addComment(comment: Comment): void {
-    const all = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
-    all.push(comment);
-    localStorage.setItem(this.storageKey, JSON.stringify(all));
+  // Add new comments
+    addComment(comment: Comment): void {
+    const allComments: Comment[] = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+    allComments.push(comment);
+    localStorage.setItem(this.storageKey, JSON.stringify(allComments));
   }
-
-
-
-
 }

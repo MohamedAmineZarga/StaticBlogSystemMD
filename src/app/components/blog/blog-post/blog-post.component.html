@@ -1,38 +1,29 @@
 <div *ngIf="post; else notFound">
-    <img *ngIf="post.cover" [src]="post.cover" alt="COVER" class="cover"/>
-    <h1>{{ post.title }}</h1>
-    <div class="meta">
-        <span>{{ post.date | date:'longDate' }}</span> / 
-        <span>{{ readingTime }} min read</span> 
-        <span> {{ views }} Views </span> 
-
-
-    </div>
-
-    <markdown [data]="post.content"></markdown>
-    
-</div>
-
-
-<section class="comments">
-  <h3>Comments ({{ comments.length }})</h3>
-
-  <div *ngIf="comments.length === 0">No comments yet.</div>
-
-  <div *ngFor="let comment of comments" class="comment">
-    <strong>{{ comment.author }}</strong> 
-    <em>({{ comment.date | date:'medium' }})</em>
-    <p>{{ comment.content }}</p>
+  <img *ngIf="post.cover" [src]="post.cover" alt="COVER" class="cover" />
+  <h1>{{ post.title }}</h1>
+  <div class="meta">
+    <span>{{ post.date | date: 'longDate' }}</span> /
+    <span>{{ readingTime }} min read</span> /
+    <span>
+      by:
+      <a
+        *ngIf="post.repoURL; else authorOnly"
+        [href]="post.repoURL"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ post.author || 'GitHub User' }}
+      </a>
+      <ng-template #authorOnly>
+        {{ post.author || 'GitHub User' }}
+      </ng-template>
+    </span>
+    <span> / {{ views }} Views </span>
   </div>
 
-  <form (submit)="addComment(); $event.preventDefault()">
-    <input type="text" placeholder="Your name" [(ngModel)]="newCommentAuthor" name="author" required />
-    <textarea placeholder="Your comment" [(ngModel)]="newCommentContent" name="content" required></textarea>
-    <button type="submit">Add Comment</button>
-  </form>
-</section>
-
+  <markdown [data]="post.content"></markdown>
+</div>
 
 <ng-template #notFound>
-    <p>Post not found</p>
+  <p>Post not found</p>
 </ng-template>
