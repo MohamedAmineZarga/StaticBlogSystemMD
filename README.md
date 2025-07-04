@@ -1,21 +1,25 @@
-# StaticBlog
+## Project Dependencies
 
-Project Angular CLI: 17.3.17
-Node: 18.20.6
-Package Manager: npm 10.8.2
-OS: win32 x64
-Package                         Version
----------------------------------------------------------
-@angular-devkit/architect       0.1703.17
-@angular-devkit/build-angular   17.3.17
-@angular-devkit/core            17.3.17
-@angular-devkit/schematics      17.3.17
-@angular/cli                    17.3.17
-@angular/material               20.0.5
-@schematics/angular             17.3.17
-rxjs                            7.8.2
-typescript                      5.4.5
-zone.js                         0.14.10
+The following table lists the key dependencies and their versions for the StaticBlog project:
+
+| Package                         | Version  |
+|---------------------------------|----------|
+| @angular-devkit/architect       | 0.1703.17 |
+| @angular-devkit/build-angular   | 17.3.17  |
+| @angular-devkit/core            | 17.3.17  |
+| @angular-devkit/schematics      | 17.3.17  |
+| @angular/cli                    | 17.3.17  |
+| @angular/material               | 20.0.5   |
+| @schematics/angular             | 17.3.17  |
+| rxjs                            | 7.8.2    |
+| typescript                      | 5.4.5    |
+| zone.js                         | 0.14.10  |
+
+**Additional Information:**
+- **Angular CLI**: 17.3.17
+- **Node**: 18.20.6
+- **Package Manager**: npm 10.8.2
+- **OS**: win32 x64
 
 
 ## Project Setup
