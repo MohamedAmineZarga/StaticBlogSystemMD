@@ -26,16 +26,17 @@ The following table lists the key dependencies and their versions for the Static
 
 ### Instructions
 - Install Node.js and npm.
-- Install Angular CLI globally: npm install -g @angular/cli.
+- Install Angular CLI globally: `npm install -g @angular/cli`.
 - Install project dependencies:
-- ``npm install``
-- ``npm install gray-matter``
-- ``npm install marked ngx-markdown``
-- ``npm install highlight.js``
+  - `npm install`
+  - `npm install gray-matter`
+  - `npm install marked ngx-markdown`
+  - `npm install highlight.js`
 
+Run `ng serve` for a development server. Navigate to http://localhost:4200/
 
-Run ng serve for a development server. Navigate to http://localhost:4200/
-Run ng build to build the project. 
+Run `ng build` to build the project.
+
 
 ## Full project page
 
