@@ -1,0 +1,99 @@
+.blog-list-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.filters {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-input,
+.author-select {
+  padding: 8px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.tags-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-option {
+  font-size: 13px;
+}
+
+.date-range {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.post-card {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.post-cover {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.post-title {
+  font-size: 22px;
+  margin: 0 0 5px 0;
+}
+
+.post-meta {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.post-excerpt {
+  font-size: 14px;
+  color: #444;
+}
+
+.post-tags {
+  margin-top: 10px;
+}
+
+.tag-badge {
+  background: #f2f2f2;
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.load-more {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.load-more button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

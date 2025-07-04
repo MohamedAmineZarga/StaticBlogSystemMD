@@ -1,0 +1,82 @@
+<div class="blog-list">
+
+  <div class="search-bar" style="margin-bottom: 1rem;">
+    <input
+      type="text"
+      placeholder="Search posts by title, tags, or author..."
+      [(ngModel)]="searchQuery"
+      (input)="applyFilters()"
+      class="search-input"
+      style="width: 100%; padding: 0.5rem; font-size: 1rem;"
+    />
+  </div>
+
+  <div style="margin-bottom: 1rem;">
+    <label for="filterType">Choose Filter:</label>
+    <select [(ngModel)]="selectedFilterType" (change)="clearFilterInputs(); applyFilters()">
+      <option value="">-- Select --</option>
+      <option value="tags">Tags</option>
+      <option value="author">Author</option>
+      <option value="date">Date Range</option>
+    </select>
+  </div>
+
+  <div *ngIf="selectedFilterType === 'tags'">
+    <label>Filter by Tags:</label><br />
+    <select multiple [(ngModel)]="selectedTags" (change)="applyFilters()" size="5" style="min-width: 150px;">
+      <option *ngFor="let tag of allTags" [value]="tag">{{ tag }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="selectedFilterType === 'author'">
+    <label>Filter by Author:</label><br />
+    <select [(ngModel)]="selectedAuthor" (change)="applyFilters()" style="min-width: 150px;">
+      <option value="">All Authors</option>
+      <option *ngFor="let author of allAuthors" [value]="author">{{ author }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="selectedFilterType === 'date'">
+    <label>Date From:</label><br />
+    <input type="date" [(ngModel)]="dateFrom" (change)="applyFilters()" />
+    <br />
+    <label>Date To:</label><br />
+    <input type="date" [(ngModel)]="dateTo" (change)="applyFilters()" />
+  </div>
+
+  <div *ngIf="isLoading && filteredPosts.length === 0" class="loading">
+    Loading posts...
+  </div>
+
+  <div *ngIf="!isLoading && filteredPosts.length === 0" class="no-posts">
+    No posts found.
+  </div>
+
+  <div class="posts-container">
+    <div *ngFor="let post of filteredPosts" class="post-card">
+      <a [routerLink]="['/post', post.slug]">
+        <img *ngIf="post.cover" [src]="post.cover" alt="Cover" class="cover" />
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.excerpt }}</p>
+        <div class="meta">
+          <span>{{ post.date | date: 'longDate' }}</span>
+          <span *ngIf="post.tags?.length"> / </span>
+          <span *ngFor="let tag of post.tags" class="tag">#{{ tag }}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  
+
+  <div *ngIf="hasMore()" class="load-more">
+    <button (click)="loadMore()" [disabled]="isLoading">
+      {{ isLoading ? 'Loading...' : 'Load More' }}
+    </button>
+  </div>
+</div>
+
+
+<button (click)="downloadRss()">Download RSS Feed</button>
+
+
+
