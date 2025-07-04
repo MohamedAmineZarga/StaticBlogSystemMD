@@ -36,6 +36,7 @@ Run ng build to build the project.
 
 ## Example Blog Posts
 
+![blog_](https://github.com/user-attachments/assets/a23f4c36-a589-4f51-8e0b-5db6a1e8cdd3)
 
 
 ## Project Features
