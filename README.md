@@ -21,13 +21,13 @@ zone.js                         0.14.10
 ## Project Setup
 
 ### Instructions
-Install Node.js and npm.
-Install Angular CLI globally: npm install -g @angular/cli.
-Install project dependencies:
-``npm install``
-``npm install gray-matter``
-``npm install marked ngx-markdown``
-``npm install highlight.js``
+- Install Node.js and npm.
+- Install Angular CLI globally: npm install -g @angular/cli.
+- Install project dependencies:
+- ``npm install``
+- ``npm install gray-matter``
+- ``npm install marked ngx-markdown``
+- ``npm install highlight.js``
 
 
 Run ng serve for a development server. Navigate to http://localhost:4200/
