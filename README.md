@@ -1,27 +1,63 @@
-# StaticBlog
+## Project Dependencies
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.13.
+The following table lists the key dependencies and their versions for the StaticBlog project:
 
-## Development server
+| Package                         | Version  |
+|---------------------------------|----------|
+| @angular-devkit/architect       | 0.1703.17 |
+| @angular-devkit/build-angular   | 17.3.17  |
+| @angular-devkit/core            | 17.3.17  |
+| @angular-devkit/schematics      | 17.3.17  |
+| @angular/cli                    | 17.3.17  |
+| @angular/material               | 20.0.5   |
+| @schematics/angular             | 17.3.17  |
+| rxjs                            | 7.8.2    |
+| typescript                      | 5.4.5    |
+| zone.js                         | 0.14.10  |
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Additional Information:**
+- **Angular CLI**: 17.3.17
+- **Node**: 18.20.6
+- **Package Manager**: npm 10.8.2
+- **OS**: win32 x64
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Project Setup
 
-## Build
+### Instructions
+- Install Node.js and npm.
+- Install Angular CLI globally: `npm install -g @angular/cli`.
+- Install project dependencies:
+  - `npm install`
+  - `npm install gray-matter`
+  - `npm install marked ngx-markdown`
+  - `npm install highlight.js`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng serve` for a development server. Navigate to http://localhost:4200/
 
-## Running unit tests
+Run `ng build` to build the project.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Full project page
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![Full BLOG PAGE](https://github.com/user-attachments/assets/313d4b8b-17cc-4b90-a67c-1533b291a6aa)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Example Blog Posts
+
+![Blog_Post_Example](https://github.com/user-attachments/assets/a025266d-3b54-4b60-83cd-b5664abfe91d)
+
+
+## Project Features
+- Blog Post Handling:  Using the marked npm package, it facilitates the creation, editing, and rendering of blog posts written in Markdown.
+- User can load all markdown files from : Local assets/posts directory + A public github repoo ( including parsefrontmatter metadata ) 
+- Syntax Highlighting: highlight.js is used to style code blocks in blog entries.
+- A list of every blog post, complete with titles, summaries, and metadata, is displayed on the blog list page.
+- Full Post Viewer Page: Provides formatted Markdown content for individual blog posts with Syntax Highlighting feature including embedded image rendering && Estimated Reading time.
+- Search Bar USING Tags / Authors / Title =.
+- Filter: Choose Filter: By Tags / Authors / Date Range
+- Track View Count: Keeps track of and shows how many views each blog post has received.
+- The Light/Dark Mode Toggle System.
+- Comment System: Allows readers to post comments on blog entries.
+- Load MD Files from GITHUB REPO using GITHUB API.
+- Generation OF RSS Feed: Creates an RSS feed for syndication automatically from blog entries(XML FORRMAT ).
